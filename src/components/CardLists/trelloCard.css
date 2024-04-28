@@ -37,6 +37,11 @@
   font-size: 20px;
   padding: 0px 7px 7px 7px;
 }
+.task {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
 .addbtn {
   width: fit-content;
   text-align: start;

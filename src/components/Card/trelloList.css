@@ -1,0 +1,36 @@
+.trelloListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.list {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.list-input {
+  background-color: #5c8374;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  color: white;
+  outline: none;
+}
+.nextbtn {
+  width: fit-content;
+  text-align: start;
+  padding: 8px;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  font-size: 17px;
+  background-color: #5c8374;
+  border: none;
+}
+
+::placeholder {
+  color: white;
+}

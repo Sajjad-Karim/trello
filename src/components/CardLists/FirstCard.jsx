@@ -1,17 +1,21 @@
 import "./trelloCard.css";
-import TrelloList from "../trellolist/TrelloList.";
-import { useState } from "react";
-const TrelloCard = ({ setList, list }) => {
-  const [showInput, setShowInput] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const addList = () => {
-    setList([...list, inputValue]);
-    setInputValue("");
-    setShowInput(false);
-  };
+import ListCards from "../Card/ListCards";
+import { memo, useCallback, useState } from "react";
+const FirstCard = ({
+  list,
+  handleAdd,
+  setInputValue,
+  inputValue,
+  setShowInput,
+  showInput,
+  handleNext,
+}) => {
   const handleClear = () => {
     setShowInput(false);
     setInputValue("");
+  };
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
   };
 
   return (
@@ -22,7 +26,12 @@ const TrelloCard = ({ setList, list }) => {
           <button className="menubtn">...</button>
         </div>
         <div className="task">
-          <TrelloList list={list} />
+          {list &&
+            list.map((data, index) => {
+              return (
+                <ListCards data={data} key={index} handleNext={handleNext} />
+              );
+            })}
         </div>
         {showInput ? (
           <div className="addtitle">
@@ -30,7 +39,7 @@ const TrelloCard = ({ setList, list }) => {
               className="addtitle-input"
               type="text"
               placeholder="Enter a title for this card..."
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={handleChange}
               value={inputValue}
             />
           </div>
@@ -39,7 +48,7 @@ const TrelloCard = ({ setList, list }) => {
         <div className="add-hide">
           {showInput ? (
             <div className="bottons">
-              <button className="addbtn" onClick={addList}>
+              <button className="addbtn" onClick={() => handleAdd(inputValue)}>
                 Add
               </button>
               <button className="hide" onClick={handleClear}>
@@ -56,4 +65,4 @@ const TrelloCard = ({ setList, list }) => {
     </>
   );
 };
-export default TrelloCard;
+export default memo(FirstCard);
