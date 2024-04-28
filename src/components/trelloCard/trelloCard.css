@@ -1,0 +1,90 @@
+.container {
+  background-color: #1b4242;
+  width: 300px;
+  max-height: 600px;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  flex-direction: column;
+  gap: 15px;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+
+  letter-spacing: 0.5px;
+  font-weight: bold;
+}
+.menubtn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 0px 7px 7px 7px;
+
+  font-weight: bold;
+  font-size: 20px;
+}
+.menubtn:hover {
+  background-color: #5c8374;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 0px 7px 7px 7px;
+}
+.addbtn {
+  width: fit-content;
+  text-align: start;
+  padding: 8px;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  font-size: 17px;
+  background-color: #5c8374;
+  border: none;
+}
+.hide {
+  text-align: start;
+  padding: 6px 11px;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  font-size: 17px;
+  background-color: #5c8374;
+  border: none;
+  border-radius: 50%;
+}
+.addbtn:hover {
+  background-color: #4e7465;
+}
+.hide:hover {
+  background-color: #4e7465;
+}
+.add-hide {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.bottons {
+  display: flex;
+  gap: 10px;
+}
+.addtitle-input {
+  background-color: #5c8374;
+  padding: 10px 10px 20px 10px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+
+  cursor: pointer;
+
+  color: white;
+}
+::placeholder {
+  color: white;
+}
