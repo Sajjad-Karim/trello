@@ -1,15 +1,9 @@
 import "./trelloCard.css";
 import ListCards from "../Card/ListCards";
 import { memo, useCallback, useState } from "react";
-const FirstCard = ({
-  list,
-  handleAdd,
-  setInputValue,
-  inputValue,
-  setShowInput,
-  showInput,
-  handleNext,
-}) => {
+const FirstCard = ({ list, setList }) => {
+  const [showInput, setShowInput] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   const handleClear = () => {
     setShowInput(false);
     setInputValue("");
@@ -17,7 +11,13 @@ const FirstCard = ({
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
-
+  const addList = () => {
+    if (inputValue.length > 0) {
+      setList((preVal) => [...preVal, inputValue]);
+      setInputValue("");
+      setShowInput(false);
+    }
+  };
   return (
     <>
       <div className="container">
@@ -28,9 +28,7 @@ const FirstCard = ({
         <div className="task">
           {list &&
             list.map((data, index) => {
-              return (
-                <ListCards data={data} key={index} handleNext={handleNext} />
-              );
+              return <ListCards data={data} key={index} index={index} />;
             })}
         </div>
         {showInput ? (
@@ -48,7 +46,7 @@ const FirstCard = ({
         <div className="add-hide">
           {showInput ? (
             <div className="bottons">
-              <button className="addbtn" onClick={() => handleAdd(inputValue)}>
+              <button className="addbtn" onClick={addList}>
                 Add
               </button>
               <button className="hide" onClick={handleClear}>
