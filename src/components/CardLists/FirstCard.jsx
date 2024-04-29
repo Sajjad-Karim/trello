@@ -1,7 +1,7 @@
 import "./trelloCard.css";
 import ListCards from "../Card/ListCards";
 import { memo, useCallback, useState } from "react";
-const FirstCard = ({ list, setList }) => {
+const FirstCard = ({ list, setList, MoveNext, handleDelete, handlePrev }) => {
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const handleClear = () => {
@@ -28,7 +28,19 @@ const FirstCard = ({ list, setList }) => {
         <div className="task">
           {list &&
             list.map((data, index) => {
-              return <ListCards data={data} key={index} index={index} />;
+              return (
+                <ListCards
+                  data={data}
+                  key={index}
+                  CurrentIndex={index}
+                  CurrentList={list}
+                  list={list}
+                  newList={setList}
+                  MoveNext={MoveNext}
+                  handleDelete={handleDelete}
+                  handlePrev={handlePrev}
+                />
+              );
             })}
         </div>
         {showInput ? (
@@ -63,4 +75,4 @@ const FirstCard = ({ list, setList }) => {
     </>
   );
 };
-export default memo(FirstCard);
+export default FirstCard;

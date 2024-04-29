@@ -1,7 +1,7 @@
 import "./trelloCard.css";
 import ListCards from "../Card/ListCards";
-import { useState } from "react";
-const ThirdCard = ({ setThird, third }) => {
+import { useState, memo } from "react";
+const ThirdCard = ({ setThird, third, MoveNext, handleDelete,handlePrev }) => {
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const handleClear = () => {
@@ -13,7 +13,7 @@ const ThirdCard = ({ setThird, third }) => {
   };
   const addList = () => {
     if (inputValue.length > 0) {
-      setThird((preVal) => [...preVal, third]);
+      setThird((preVal) => [...preVal, inputValue]);
       setInputValue("");
       setShowInput(false);
     }
@@ -28,7 +28,19 @@ const ThirdCard = ({ setThird, third }) => {
         <div className="task">
           {third &&
             third.map((data, index) => {
-              return <ListCards data={data} key={index} />;
+              return (
+                <ListCards
+                  data={data}
+                  key={index}
+                  CurrentIndex={index}
+                  CurrentList={third}
+                  newList={setThird}
+                  MoveNext={MoveNext}
+                  third={third}
+                  handlePrev={handlePrev}
+                  handleDelete={handleDelete}
+                />
+              );
             })}
         </div>
         {showInput ? (
@@ -63,4 +75,4 @@ const ThirdCard = ({ setThird, third }) => {
     </>
   );
 };
-export default ThirdCard;
+export default memo(ThirdCard);

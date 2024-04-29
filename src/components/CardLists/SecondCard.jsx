@@ -1,7 +1,13 @@
 import "./trelloCard.css";
 import ListCards from "../Card/ListCards";
 import { useState } from "react";
-const SecondCard = ({ Second, setSecond }) => {
+const SecondCard = ({
+  Second,
+  setSecond,
+  MoveNext,
+  handleDelete,
+  handlePrev,
+}) => {
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const handleClear = () => {
@@ -28,7 +34,18 @@ const SecondCard = ({ Second, setSecond }) => {
         <div className="task">
           {Second &&
             Second.map((data, index) => {
-              return <ListCards data={data} key={index} />;
+              return (
+                <ListCards
+                  data={data}
+                  key={index}
+                  CurrentIndex={index}
+                  newList={setSecond}
+                  CurrentList={Second}
+                  MoveNext={MoveNext}
+                  handlePrev={handlePrev}
+                  handleDelete={handleDelete}
+                />
+              );
             })}
         </div>
         {showInput ? (
